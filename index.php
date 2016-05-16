@@ -39,6 +39,8 @@
             <button ng-click="twittyCtrl.nextPage()">Continue</button>
         </div>
         <div ng-if="twittyCtrl.pages[3]">
+            <div ng-include="client/test.html"></div>
+            
             <h1>Twitty</h1>
             <h2>{{twittyCtrl.musician.user.name}}</h2>
             <h3>{{twittyCtrl.musician.user.accountName}}</h3>
@@ -46,8 +48,8 @@
             <input type="checkbox" ng-model="twittyCtrl.isPlatformAnalysis"/>Platform<br />
             <input type="checkbox" ng-model="twittyCtrl.isLanguageAnalysis"/>Language<br />
             <input type="checkbox" ng-model="twittyCtrl.isReactionModel"/>Reaction<br />
-            <button ng-click="twittyCtrl.nextPage()">Continue</button>
-            <button ng-click="twittyCtrl.nextPage()">Skip</button>
+            <button>Continue</button>
+            <button>Skip</button>
         </div>
 
     </div>
