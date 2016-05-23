@@ -1,4 +1,8 @@
-﻿angular.module('twittyApp', [])
+﻿/*require(['./client/twittyFactory'], function (f) {
+    var sarai = 0;
+});*/
+
+angular.module('twittyApp', [])
   .controller('twittyCtrl', ['$http', TwittyCtrl]);
 
 function TwittyCtrl($http) {
@@ -62,5 +66,8 @@ TwittyCtrl.prototype = {
         }, function errorCallback(response) {
             debugger;
         });
+    },
+    calculateResults: function () {
+        
     }
 }

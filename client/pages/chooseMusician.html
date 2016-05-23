@@ -1,0 +1,12 @@
+﻿<div>
+    <h1>Twitty!</h1>
+    <h2>Choose musician name:</h2>
+    <input type="text" name="example" list="exampleList" ng-model="twittyCtrl.selectedMusician">
+    <datalist id="exampleList">
+        <option ng-repeat="singer in twittyCtrl.singersList" value="{{singer}}">
+    </datalist>
+    <div>
+        <button ng-click="twittyCtrl.searchMusician()">Search</button>
+        <button>I'm Feeling Lucky</button>
+    </div>
+</div>
