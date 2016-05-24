@@ -3,9 +3,10 @@
     <h2>{{twittyCtrl.musician.user.name}}</h2>
     <h3>@{{twittyCtrl.musician.user.accountName}}</h3>
     <h4>Choose Basic Analysis Filters:</h4>
-    <input type="checkbox" ng-model="twittyCtrl.isPlatformAnalysis" />Platform<br />
-    <input type="checkbox" ng-model="twittyCtrl.isLanguageAnalysis" />Language<br />
-    <input type="checkbox" ng-model="twittyCtrl.isReactionModel" />Reaction<br />
+    <input type="checkbox" ng-model="twittyCtrl.platform" />Platform<br />
+    <input type="checkbox" ng-model="twittyCtrl.language" />Language<br />
+    <input type="checkbox" ng-model="twittyCtrl.hashTags" />Hashtags<br />
+    <input type="checkbox" ng-model="twittyCtrl.contributers" />Contributers<br />
     <button ng-click="twittyCtrl.nextPage()">Continue</button>
     <button ng-click="twittyCtrl.nextPage()">Skip</button>
 </div>

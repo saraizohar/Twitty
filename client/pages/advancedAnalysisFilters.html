@@ -3,11 +3,10 @@
     <h2>{{twittyCtrl.musician.user.name}}</h2>
     <h3>@{{twittyCtrl.musician.user.accountName}}</h3>
     <h4>Choose Advanced Analysis Filters:</h4>
-    <input type="checkbox" ng-model="twittyCtrl.mostPopularHashtags" />Most popular hashtags<br />
     <input type="checkbox" ng-model="twittyCtrl.topRatesTweets" />Mop rated tweets<br />
-    <input type="checkbox" ng-model="twittyCtrl.topContributers" />Top contributers<br />
     <input type="checkbox" ng-model="twittyCtrl.topRelatedMusician" />Top rated Musician<br />
     <input type="checkbox" ng-model="twittyCtrl.sentimentAnalysis" />Sentiment analysis<br />
+    <input type="checkbox" ng-model="twittyCtrl.timeAnalysis" />Time analysis<br />
     <button ng-click="twittyCtrl.nextPage()">Continue</button>
     <button ng-click="twittyCtrl.nextPage()">Skip</button>
 </div>

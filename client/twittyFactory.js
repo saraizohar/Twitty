@@ -2,7 +2,7 @@
     function TwittyFactory() {
 
         return {
-            getMusicianList: function () {
+            getmusicianDic: function () {
                 debugger;
             }
         }

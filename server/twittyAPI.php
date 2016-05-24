@@ -5,12 +5,19 @@
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
 
+        $musiciansList = [];
+        $musiciansList[] = "muse";
+        $musiciansList[] = "oasis";
+        $musiciansList[] = "britney spears";
+        $musiciansList[] = "justin timberlake";
+
         switch ($action){
-            case "getSingersList":
-                $result = ["muse", "oasis", "britney spears", "justin timberlake"];
+            case "getMusicianList":
+                $result = $musiciansList;
                 break;
-            case "searchMusician":
-                $musicianName = $_POST["name"];
+            case "getMusicianBasicInfo":
+                $id = $_POST["musicianID"];
+                $musicianName = $musiciansList[$id];
 
                 $result = [];
                 $result["name"] = $musicianName;
@@ -21,6 +28,24 @@
                 $result["tweetsmentionedCount"] = 90;
                 $result["contributesCount"] = 12;
 
+                break;
+            case "analyzeTweets":
+                $platform = $_POST["platformAnalysis"];
+                $language = $_POST["languageAnalysis"];
+                $hashTags = $_POST["hashTags"];
+                $contributers = $_POST["contributers"];
+                $topRatesTweets = $_POST["topRatesTweets"];
+                $topRelatedMusician = $_POST["topRelatedMusician"];
+                $sentimentAnalysis = $_POST["sentimentAnalysis"];
+                $timeAnalysis = $_POST["timeAnalysis"];
+
+                $result = [];
+                $result["platform"] = [];
+                $result["platform"]["android"]=40;
+                $result["platform"]["iOS"]=22;
+                $result["platform"]["web"]=35;
+                $result["platform"]["ynet"]=3;
+               
                 break;
         }
 
