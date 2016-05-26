@@ -1,12 +1,30 @@
 ﻿<div>
-    <h1>Twitty</h1>
-    <h2>{{twittyCtrl.musician.user.name}}</h2>
-    <h3>@{{twittyCtrl.musician.user.accountName}}</h3>
-    <h4>Choose Basic Analysis Filters:</h4>
-    <input type="checkbox" ng-model="twittyCtrl.platform" />Platform<br />
-    <input type="checkbox" ng-model="twittyCtrl.language" />Language<br />
-    <input type="checkbox" ng-model="twittyCtrl.hashTags" />Hashtags<br />
-    <input type="checkbox" ng-model="twittyCtrl.contributers" />Contributers<br />
-    <button ng-click="twittyCtrl.nextPage()">Continue</button>
-    <button ng-click="twittyCtrl.nextPage()">Skip</button>
+    <br><br>
+    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}!</h1>
+    <div class="row center">
+        <h2 class="header col s12 light">{{twittyCtrl.musician.user.name}}</h2>
+        <h3 class="header col s12 light">@{{twittyCtrl.musician.user.accountName}}</h3>
+        <h4 class="header col s12 light">Choose Basic Analysis Filters:</h4>
+    </div>
+    
+
+    <div class="center">
+        <input type="checkbox" class="filled-in" id="platform" ng-model="twittyCtrl.platform" />
+        <label for="platform">platform</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="language" ng-model="twittyCtrl.language" />
+        <label for="language">language</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="hashTags" ng-model="twittyCtrl.hashTags" />
+        <label for="hashTags">hashTags</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="contributers" ng-model="twittyCtrl.contributers" />
+        <label for="contributers">contributers</label>
+    </div>
+    
+    <br><br>
+    <div class="row center">
+        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Continue</a>
+        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Skip</a>
+    </div>
 </div>

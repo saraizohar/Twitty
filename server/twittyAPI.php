@@ -45,6 +45,12 @@
                 $result["platform"]["iOS"]=22;
                 $result["platform"]["web"]=35;
                 $result["platform"]["ynet"]=3;
+
+                $result["languages"] = [];
+                $result["languages"]["ar-ar"]=40;
+                $result["languages"]["en-gb"]=22;
+                $result["languages"]["es-es"]=35;
+                $result["languages"]["fr-fr"]=3;
                
                 break;
         }

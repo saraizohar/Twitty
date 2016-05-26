@@ -6,11 +6,17 @@ angular.module('twittyApp', [])
   .controller('twittyCtrl', ['$http', TwittyCtrl]);
 
 function TwittyCtrl($http) {
+    this.applicationName = 'Tweety';
+
     this.pages = [1, 0, 0, 0];
     this.currentPage = 0;
     this.$http = $http;
     this.musicianDic = {};
     this.musician = {};
+    this.isTabActiveDic = {};
+    this.activeTab = "";
+    this.isFirstTimeDraw = true;
+
 }
 
 TwittyCtrl.prototype = {
@@ -31,6 +37,21 @@ TwittyCtrl.prototype = {
         }).then(function successCallback(response) {
             ctrl._parseMusicianList(response.data);
             ctrl.nextPage();
+
+            $(document).ready(function () {
+                $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false, // Does not change width of dropdown to that of the activator
+                    hover: false, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                }
+               );
+
+            });
+
         }, function errorCallback(response) {
             debugger;
         });
@@ -69,7 +90,8 @@ TwittyCtrl.prototype = {
         });
     },
     calculateResults: function () {
-        debugger;
+        this.isCalculatingResults = true;
+
         var settings = {};
         settings["platform"] = this.platform;
         settings["language"] = this.language;
@@ -96,12 +118,30 @@ TwittyCtrl.prototype = {
             }
         }).then(function successCallback(response) {
             debugger;
+            ctrl.analyzedData = response.data;
+
             ctrl.platform = response.data.platform;
+            ctrl._initializeIsTabActiveDic();
             ctrl.nextPage();
-            ctrl._drawChart(ctrl.platform, "Platform analysis");
+            ctrl.changeAnalyzeType("languages");
         }, function errorCallback(response) {
             debugger;
         });
+    },
+    changeAnalyzeType: function (type) {
+        debugger;
+        if (this.activeTab != "") {
+            this.isTabActiveDic[this.activeTab].isActive = false;
+        }
+
+        this.activeTab = type;
+        this.isTabActiveDic[this.activeTab].isActive = true;
+
+        if (!this.isTabActiveDic[this.activeTab].isAlreadyDrawn) {
+            this._drawChart(this.analyzedData[type], type);
+            this.isFirstTimeDraw = false;
+        }
+
     },
     // private methodes
     _parseMusicianList: function (data) {
@@ -109,19 +149,26 @@ TwittyCtrl.prototype = {
             this.musicianDic[value] = key;
         }, this);
     },
-    _drawChart: function (test, titleStr) {
-        debugger;
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+    _drawChart: function (analyzedData, titleStr) {
+        var ctrl = this;
 
-            var ness = [['Task', 'Hours per Day']];
-            angular.forEach(test, function (value, key) {
-                ness.push([key, value]);
+        if (this.isFirstTimeDraw) {
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+        } else {
+            drawChart();
+        }
+        
+        function drawChart() {
+            ctrl.isTabActiveDic[ctrl.activeTab].isAlreadyDrawn = true;
+
+            var chartData = [['Task', 'Hours per Day']];
+            angular.forEach(analyzedData, function (value, key) {
+                chartData.push([key, value]);
             }, this);
 
 
-            var data = google.visualization.arrayToDataTable(ness);
+            var data = google.visualization.arrayToDataTable(chartData);
 
             /*var data = google.visualization.arrayToDataTable([
                   ['Task', 'Hours per Day'],
@@ -136,8 +183,17 @@ TwittyCtrl.prototype = {
                 pieHole: 0.4,
             };
 
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            var chart = new google.visualization.PieChart(document.getElementById(ctrl.activeTab));
             chart.draw(data, options);
         }
+    },
+    _initializeIsTabActiveDic: function () {
+
+        this.isTabActiveDic['languages'] = {isActive: false, isAlreadyDrawn:false};
+        this.isTabActiveDic['contributers'] = { isActive: false, isAlreadyDrawn: false };
+        this.isTabActiveDic['platform'] = { isActive: false, isAlreadyDrawn: false };
+        this.isTabActiveDic['hashtags'] = { isActive: false, isAlreadyDrawn: false };
+        this.isTabActiveDic['tweets'] = { isActive: false, isAlreadyDrawn: false };
+        this.isTabActiveDic['relatedMusician'] = { isActive: false, isAlreadyDrawn: false };
     }
 }

@@ -1,10 +1,37 @@
 ﻿<div>
-    <h1>Twitty</h1>
-    <h2>{{twittyCtrl.musician.user.name}}</h2>
-    <h3>@{{twittyCtrl.musician.user.accountName}}</h3>
-    <img src="{{twittyCtrl.musician.user.imageURL}}" />
-    <h3>Followers Count: {{twittyCtrl.musician.user.followersCount}}</h3>
-    <h3>Tweets-Mentioned-Him Count: {{twittyCtrl.musician.user.tweetsmentionedCount}}</h3>
-    <h3>Contributes Count: {{twittyCtrl.musician.user.contributesCount}}</h3>
-    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    <br><br>
+    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}!</h1>
+    <div class="row center">
+        <h2 class="header col s12 light">{{twittyCtrl.musician.user.name}}</h2>
+        <h3 class="header col s12 light">@{{twittyCtrl.musician.user.accountName}}</h3>
+        <img src="{{twittyCtrl.musician.user.imageURL}}" />
+        <h4 class="header col s12 light">Followers Count: {{twittyCtrl.musician.user.followersCount}}</h4>
+        <h4 class="header col s12 light">Tweets-Mentioned-Him Count: {{twittyCtrl.musician.user.tweetsmentionedCount}}</h4>
+        <h4 class="header col s12 light">Contributes Count: {{twittyCtrl.musician.user.contributesCount}}</h4>
+    </div>
+    <div class="collection" style="width:200px">
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['languages'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('languages')">Languages</a>
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['contributers'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('contributers')">Contributers</a>
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['platform'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('platform')">Platform</a>
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['hashtags'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('hashtags')">Hashtags</a>
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['tweets'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('tweets')">Tweets</a>
+        <a href="#!" class="collection-item" 
+           ng-class="{active: twittyCtrl.isTabActiveDic['relatedMusician'].isActive}" 
+           ng-click="twittyCtrl.changeAnalyzeType('relatedMusician')">Related Musicians</a>
+
+
+    </div>
+    <div id="platform" style="width: 900px; height: 500px;" ng-show="twittyCtrl.isTabActiveDic['platform'].isActive"></div>
+    <div id="languages" style="width: 900px; height: 500px;" ng-show="twittyCtrl.isTabActiveDic['languages'].isActive"></div>
+
 </div>

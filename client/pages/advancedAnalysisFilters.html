@@ -1,12 +1,28 @@
 ﻿<div>
-    <h1>Twitty</h1>
-    <h2>{{twittyCtrl.musician.user.name}}</h2>
-    <h3>@{{twittyCtrl.musician.user.accountName}}</h3>
-    <h4>Choose Advanced Analysis Filters:</h4>
-    <input type="checkbox" ng-model="twittyCtrl.topRatesTweets" />Mop rated tweets<br />
-    <input type="checkbox" ng-model="twittyCtrl.topRelatedMusician" />Top rated Musician<br />
-    <input type="checkbox" ng-model="twittyCtrl.sentimentAnalysis" />Sentiment analysis<br />
-    <input type="checkbox" ng-model="twittyCtrl.timeAnalysis" />Time analysis<br />
-    <button ng-click="twittyCtrl.nextPage()">Continue</button>
-    <button ng-click="twittyCtrl.nextPage()">Skip</button>
+    <br><br>
+    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}!</h1>
+    <div class="row center">
+        <h2 class="header col s12 light">{{twittyCtrl.musician.user.name}}</h2>
+        <h3 class="header col s12 light">@{{twittyCtrl.musician.user.accountName}}</h3>
+        <h4 class="header col s12 light">Choose Advanced Analysis Filters:</h4>
+    </div>
+    <div class="center">
+        <input type="checkbox" class="filled-in" id="topRatesTweets" ng-model="twittyCtrl.topRatesTweets" />
+        <label for="topRatesTweets">Top rated tweets</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="topRelatedMusician" ng-model="twittyCtrl.topRelatedMusician" />
+        <label for="topRelatedMusician">Top rated Musician</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="sentimentAnalysis" ng-model="twittyCtrl.sentimentAnalysis" />
+        <label for="sentimentAnalysis">Sentiment analysis</label>
+        <br><br>
+        <input type="checkbox" class="filled-in" id="timeAnalysis" ng-model="twittyCtrl.timeAnalysis" />
+        <label for="timeAnalysis">Time analysis</label>
+    </div>
+
+    <br><br>
+    <div class="row center">
+        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Continue</a>
+        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Skip</a>
+    </div>
 </div>
