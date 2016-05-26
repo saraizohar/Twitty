@@ -1,0 +1,24 @@
+﻿<div class="container">
+    <br><br>
+    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}</h1>
+    <div class="row center">
+        <h5 class="header col s12 light">Feeling Lucky</h5>
+    </div>
+    <input class="center" style="width:30%" 
+           type="text" 
+           name="example" 
+           list="exampleList" 
+           ng-model="twittyCtrl.selectedFeelingLuckyOption">
+    <datalist id="exampleList">
+        <option value="Hashtags">
+        <option value="Musician">
+        <option value="Tweet">
+    </datalist>
+    <div class="row center">
+        <h5 class="header col s12 light">Let's make Tweets anaysis</h5>
+        <a class="btn-large waves-effect waves-light" 
+           ng-class="{disabled: !twittyCtrl.selectedFeelingLuckyOption}" 
+           ng-click="twittyCtrl.selectedFeelingLuckyOption && twittyCtrl.feelingLuckyAnalysis()">Continue</a>
+    </div>
+    <br><br>
+</div>

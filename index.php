@@ -35,6 +35,7 @@
         <div ng-if="twittyCtrl.pages[4]" ng-include="'./client/pages/advancedAnalysisFilters.html'"> </div>
         <div ng-if="twittyCtrl.pages[5]" ng-include="'./client/pages/done.html'"></div>
         <div ng-if="twittyCtrl.pages[6]" ng-include="'./client/pages/analysisResults.html'"></div>
+        <div ng-if="twittyCtrl.pages[7]" ng-include="'./client/pages/feelingLucky.html'"></div>
     </div>
 
     <!--  Scripts-->

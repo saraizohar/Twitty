@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <br><br>
-    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}!</h1>
+    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}</h1>
     <div class="row center">
         <h5 class="header col s12 light">Choose musician name:</h5>
     </div>
@@ -13,7 +13,12 @@
         <option ng-repeat="(singer,id) in twittyCtrl.musicianDic" value="{{singer}}">
     </datalist>
     <div class="row center">
-        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.getMusicianBasicInfo()">Search</a>
+        <a class="btn-large waves-effect waves-light" 
+           ng-class="{disabled:!twittyCtrl.selectedMusician}" 
+           ng-click="twittyCtrl.selectedMusician && twittyCtrl.getMusicianBasicInfo()">Search</a>
+        <a class="btn-large waves-effect waves-light" 
+           ng-class="{disabled:!twittyCtrl.selectedMusician}" 
+           ng-click="twittyCtrl.selectedMusician && twittyCtrl.nextPage(7)">I'm Feeling Lucky</a>
     </div>
     <br><br>
 </div>

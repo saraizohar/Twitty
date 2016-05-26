@@ -8,7 +8,7 @@ angular.module('twittyApp', [])
 function TwittyCtrl($http) {
     this.applicationName = 'Tweety';
 
-    this.pages = [1, 0, 0, 0];
+    this.pages = [1, 0, 0, 0, 0, 0, 0, 0];
     this.currentPage = 0;
     this.$http = $http;
     this.musicianDic = {};
@@ -20,9 +20,10 @@ function TwittyCtrl($http) {
 }
 
 TwittyCtrl.prototype = {
-    nextPage: function () {
+    nextPage: function (pageNum) {
         this.pages[this.currentPage] = 0;
-        this.currentPage++;
+        this.currentPage = pageNum ? pageNum : this.currentPage + 1
+        //this.currentPage++;
         this.pages[this.currentPage] = 1;
     },
     getStarted: function () {
@@ -142,6 +143,36 @@ TwittyCtrl.prototype = {
             this.isFirstTimeDraw = false;
         }
 
+    },
+    feelingLuckyAnalysis: function () {
+        var ctrl = this;
+
+        var settings = {
+            hashtags: false,
+            musician: false,
+            tweet: false
+        }
+
+        settings[twittyCtrl.selectedFeelingLuckyOption.toLowerCase()] = true;
+
+        var queryString = "";
+        angular.forEach(settings, function (value, key) {
+            value = !value ? null : value;
+            queryString += "&" + key + "=" + value;
+        }, this);
+
+        this.$http({
+            method: 'POST',
+            url: './server/feelingLuckyAPI.php',
+            data: 'action=feelingLuckyAnalayz' + queryString,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function successCallback(response) {
+   
+        }, function errorCallback(response) {
+            debugger;
+        });
     },
     // private methodes
     _parseMusicianList: function (data) {
