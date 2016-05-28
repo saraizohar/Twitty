@@ -1,11 +1,12 @@
 ﻿define(['angular',
+    'hammer',
     'materialize',
     'jquery',
     'googleCharts',
     './controllers/tweetyCtrl',
     './factories/tweetyFactory',
     './factories/chartsFactory'],
-    function (angular, materialize, jquery, google, tweetyCtrl, tweetyFactory, chartsFactory) {
+    function (angular, hammer, materialize, jquery, google, tweetyCtrl, tweetyFactory, chartsFactory) {
     var app = angular.module('twittyApp', []);
 
     app.init = function () {

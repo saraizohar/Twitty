@@ -77,6 +77,7 @@
             settings["timeAnalysis"] = this.timeAnalysis;
 
             this.tweetyFactory.calculateResults(this.selectedMusicianID, settings).then(function (response) {
+                debugger;
                 ctrl.isLoading = false;
                 ctrl.analyzedData = response.data;
 
@@ -122,7 +123,6 @@
             });
         },
         firstLetterAsCapital: function (word) {
-                debugger;
                 var newWord = word.charAt(0).toUpperCase() + word.substring(1,word.length);
                 return newWord;
         },
@@ -149,21 +149,24 @@
             }, this);
         },
         _drawChart: function (analyzedData) {
+            debugger;
             var ctrl = this;
 
             var title = this.tabsInfoDic[this.activeTab].title;
             var type = this.tabsInfoDic[this.activeTab].type;
+            var col1 = this.tabsInfoDic[this.activeTab].col1;
+            var col2 = this.tabsInfoDic[this.activeTab].col2;
 
-            this.chartsFactory.drawChart(analyzedData, title, this.activeTab, type).then(function () {
-                this.isTabActabsInfoDictiveDic[ctrl.activeTab].isAlreadyDrawn = true;
+            this.chartsFactory.drawChart(analyzedData, title, this.activeTab, type, col1, col2).then(function () {
+                ctrl.tabsInfoDic[ctrl.activeTab].isAlreadyDrawn = true;
             })
         },
         _initializeTabsInfoDic: function () {
 
-            this.tabsInfoDic['languages'] = { isActive: false, isAlreadyDrawn: false, type:"pieChart" , title: "bla"};
+            this.tabsInfoDic['languages'] = { isActive: false, isAlreadyDrawn: false, type:"pieChart" , title: "Tweets by Language", col1: "languages", col2: "number of tweets"};
             this.tabsInfoDic['contributers'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
-            this.tabsInfoDic['platform'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
-            this.tabsInfoDic['hashtags'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
+            this.tabsInfoDic['platform'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "Tweets by Platform", col1: "platform", col2: "number of tweets" };
+            this.tabsInfoDic['hashtags'] = { isActive: false, isAlreadyDrawn: false, type: "barChart", title: "Most common Hashtags", col1:"Hashtag", col2: "number of tweets" };
             this.tabsInfoDic['tweets'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
             this.tabsInfoDic['relatedMusician'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
         }

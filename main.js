@@ -16,10 +16,13 @@ require.config({
             exports: 'angular'
         },
         jquery: {
-            exports: 'jQuery'
+            exports: 'jquery'
         },
         googleCharts: {
             exports: 'googleCharts'
+        },
+        hammer: {
+            exports: 'hammer'
         }
     }
 });

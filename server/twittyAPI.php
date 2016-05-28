@@ -51,6 +51,14 @@
                 $result["languages"]["en-gb"]=22;
                 $result["languages"]["es-es"]=35;
                 $result["languages"]["fr-fr"]=3;
+
+                $result["hashtags"] = [];
+                $result["hashtags"]["#king"]=15;
+                $result["hashtags"]["#love"]=25;
+                $result["hashtags"]["#theBest"]=20;
+                $result["hashtags"]["#worst"]=30;
+                $result["hashtags"]["#boring"]=4;
+                $result["hashtags"]["other"]=6;
                
                 break;
         }
