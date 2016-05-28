@@ -6,27 +6,26 @@
     <title>Tweety</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="client/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="client/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="client/css/tweety.css" type="text/css" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <!-- advanced setup: using public CDN with local file fallback -->
+    <script data-main="main" src="http://requirejs.org/docs/release/2.2.0/comments/require.js"></script>
+
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>-->
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="./client/twittyCtrl.js"></script>
-    <link rel="stylesheet" href="./client/css/tweety.css">
+    <!--<script src="./client/twittyCtrl.js"></script>-->
+    
+   
 </head>
-<body ng-app="twittyApp">
+<body>
     <div ng-controller="twittyCtrl as twittyCtrl">
 
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container">
                 <a id="logo-container" href="#" class="brand-logo">Logo</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Navbar Link</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
         <div ng-if="twittyCtrl.pages[0]" ng-include="'./client/pages/welcome.html'"></div>
@@ -40,8 +39,12 @@
     </div>
 
     <!--  Scripts-->
+    <!--
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
+    <script src="js/init.js"></script>    
+    -->
+    
+    
 </body>
 </html>
