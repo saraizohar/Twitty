@@ -1,16 +1,16 @@
 ﻿<div>
     <br><br>
-    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}</h1>
+    <h1 class="header center orange-text">{{tweetyCtrl.applicationName}}</h1>
     <div class="row center">
-        <h2 class="header col s12 light">{{twittyCtrl.musician.user.name}}</h2>
-        <h3 class="header col s12 light">@{{twittyCtrl.musician.user.accountName}}</h3>
+        <h2 class="header col s12 light">{{tweetyCtrl.musician.user.name}}</h2>
+        <h3 class="header col s12 light">@{{tweetyCtrl.musician.user.accountName}}</h3>
         <h4 class="header col s12 light">You're Almost Done!</h4>
     </div>
 
     <br><br>
     <div class="row center">
-        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.calculateResults()" ng-if="!twittyCtrl.isLoading">Calculate Results</a>
-        <div class="preloader-wrapper big active" ng-if="twittyCtrl.isLoading">
+        <a class="btn-large waves-effect waves-light" ng-click="tweetyCtrl.calculateResults()" ng-if="!tweetyCtrl.isLoading">Calculate Results</a>
+        <div class="preloader-wrapper big active" ng-if="tweetyCtrl.isLoading">
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>

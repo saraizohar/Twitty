@@ -1,7 +1,8 @@
 ﻿define(['angular'], function (angular) {
 
-    function TwittyCtrl(tweetyFactory) {
+    function TweetyCtrl(tweetyFactory, chartsFactory) {
         this.tweetyFactory = tweetyFactory;
+        this.chartsFactory = chartsFactory;
 
         this.applicationName = 'Tweety';
 
@@ -9,13 +10,15 @@
         this.currentPage = 0;   
         this.musicianDic = {};
         this.musician = {};
-        this.isTabActiveDic = {};
+        this.tabsInfoDic = {};
         this.activeTab = "";
         this.isFirstTimeDraw = true;
+        this.isError = false;
+        this.errorText = "";
 
     }
 
-    TwittyCtrl.prototype = {
+    TweetyCtrl.prototype = {
         nextPage: function (pageNum) {
             this.pages[this.currentPage] = 0;
             this.currentPage = pageNum ? pageNum : this.currentPage + 1
@@ -28,7 +31,7 @@
                 ctrl._parseMusicianList(response.data);
                 ctrl.nextPage();
 
-                $(document).ready(function () {
+                /*$(document).ready(function () {
                     $('.dropdown-button').dropdown({
                         inDuration: 300,
                         outDuration: 225,
@@ -40,7 +43,7 @@
                     }
                    );
 
-                });
+                });*/
             }).catch(function (response) {
                 debugger;
             });
@@ -74,12 +77,11 @@
             settings["timeAnalysis"] = this.timeAnalysis;
 
             this.tweetyFactory.calculateResults(this.selectedMusicianID, settings).then(function (response) {
-                debugger;
                 ctrl.isLoading = false;
                 ctrl.analyzedData = response.data;
 
                 ctrl.platform = response.data.platform;
-                ctrl._initializeIsTabActiveDic();
+                ctrl._initializeTabsInfoDic();
                 ctrl.nextPage();
                 ctrl.changeAnalyzeType("languages");
             }).catch(function (response) {
@@ -88,15 +90,14 @@
             });
         },
         changeAnalyzeType: function (type) {
-            debugger;
             if (this.activeTab != "") {
-                this.isTabActiveDic[this.activeTab].isActive = false;
+                this.tabsInfoDic[this.activeTab].isActive = false;
             }
 
             this.activeTab = type;
-            this.isTabActiveDic[this.activeTab].isActive = true;
+            this.tabsInfoDic[this.activeTab].isActive = true;
 
-            if (!this.isTabActiveDic[this.activeTab].isAlreadyDrawn) {
+            if (!this.tabsInfoDic[this.activeTab].isAlreadyDrawn) {
                 this._drawChart(this.analyzedData[type], type);
                 this.isFirstTimeDraw = false;
             }
@@ -113,12 +114,33 @@
                 tweet: false
             }
 
-            settings[twittyCtrl.selectedFeelingLuckyOption.toLowerCase()] = true;
+            settings[this.selectedFeelingLuckyOption.toLowerCase()] = true;
 
             this.tweetyFactory.feelingLuckyAnalysis(this.selectedMusicianID, settings).then(function () {
             }).catch(function () {
                 debugger;
             });
+        },
+        firstLetterAsCapital: function (word) {
+                debugger;
+                var newWord = word.charAt(0).toUpperCase() + word.substring(1,word.length);
+                return newWord;
+        },
+        validateAnalyzeSettings: function () {
+            this.isError = false;
+            if (!(this.platform ||
+                this.language ||
+                this.hashTags ||
+                this.contributers ||
+                this.topRatesTweets ||
+                this.topRelatedMusician ||
+                this.sentimentAnalysis ||
+                this.timeAnalysis)) {
+                this.isError = true;
+                this.errorText = "Please choose at least one option"
+            } else {
+                this.nextPage();
+            }
         },
         // private methodes
         _parseMusicianList: function (data) {
@@ -126,57 +148,27 @@
                 this.musicianDic[value] = key;
             }, this);
         },
-        _drawChart: function (analyzedData, titleStr, chartType) {
+        _drawChart: function (analyzedData) {
             var ctrl = this;
 
-            if (this.isFirstTimeDraw) {
-                google.charts.load("current", { packages: ["corechart"] });
-                google.charts.setOnLoadCallback(drawChart);
-            } else {
-                drawChart();
-            }
+            var title = this.tabsInfoDic[this.activeTab].title;
+            var type = this.tabsInfoDic[this.activeTab].type;
 
-            function drawChart() {
-                ctrl.isTabActiveDic[ctrl.activeTab].isAlreadyDrawn = true;
-
-                var chartData = [['Task', 'Hours per Day']];
-                angular.forEach(analyzedData, function (value, key) {
-                    chartData.push([key, value]);
-                }, this);
-
-
-                var data = google.visualization.arrayToDataTable(chartData);
-
-                /*var data = google.visualization.arrayToDataTable([
-                      ['Task', 'Hours per Day'],
-                      ['android', 40],
-                      ['iOS', 22],
-                      ['web', 35],
-                      ['ynet', 3]
-                ]);*/
-
-                var options = {
-                    title: titleStr,
-                    pieHole: 0.4,
-                    width: 900,
-                    height: 500
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById(ctrl.activeTab));
-                chart.draw(data, options);
-            }
+            this.chartsFactory.drawChart(analyzedData, title, this.activeTab, type).then(function () {
+                this.isTabActabsInfoDictiveDic[ctrl.activeTab].isAlreadyDrawn = true;
+            })
         },
-        _initializeIsTabActiveDic: function () {
+        _initializeTabsInfoDic: function () {
 
-            this.isTabActiveDic['languages'] = { isActive: false, isAlreadyDrawn: false };
-            this.isTabActiveDic['contributers'] = { isActive: false, isAlreadyDrawn: false };
-            this.isTabActiveDic['platform'] = { isActive: false, isAlreadyDrawn: false };
-            this.isTabActiveDic['hashtags'] = { isActive: false, isAlreadyDrawn: false };
-            this.isTabActiveDic['tweets'] = { isActive: false, isAlreadyDrawn: false };
-            this.isTabActiveDic['relatedMusician'] = { isActive: false, isAlreadyDrawn: false };
+            this.tabsInfoDic['languages'] = { isActive: false, isAlreadyDrawn: false, type:"pieChart" , title: "bla"};
+            this.tabsInfoDic['contributers'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
+            this.tabsInfoDic['platform'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
+            this.tabsInfoDic['hashtags'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
+            this.tabsInfoDic['tweets'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
+            this.tabsInfoDic['relatedMusician'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
         }
     }
 
-    return TwittyCtrl;
+    return TweetyCtrl;
 });
 

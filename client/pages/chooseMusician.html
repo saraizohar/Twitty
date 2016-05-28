@@ -1,6 +1,6 @@
 ﻿<div class="container">
     <br><br>
-    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}</h1>
+    <h1 class="header center orange-text">{{tweetyCtrl.applicationName}}</h1>
     <div class="row center">
         <h5 class="header col s12 light">Choose musician name:</h5>
     </div>
@@ -8,20 +8,20 @@
            type="text" 
            name="example" 
            list="exampleList" 
-           ng-model="twittyCtrl.selectedMusician">
+           ng-model="tweetyCtrl.selectedMusician">
     <datalist id="exampleList">
-        <option ng-repeat="(singer,id) in twittyCtrl.musicianDic" value="{{singer}}">
+        <option ng-repeat="(singer,id) in tweetyCtrl.musicianDic" value="{{singer}}">
     </datalist>
     <div class="row center">
         <a class="btn-large waves-effect waves-light" 
-           ng-class="{disabled:!twittyCtrl.selectedMusician}" 
-           ng-click="twittyCtrl.selectedMusician && twittyCtrl.getMusicianBasicInfo()" 
-           ng-if="!twittyCtrl.isLoading">Search</a>
+           ng-class="{disabled:!tweetyCtrl.selectedMusician}" 
+           ng-click="tweetyCtrl.selectedMusician && tweetyCtrl.getMusicianBasicInfo()" 
+           ng-if="!tweetyCtrl.isLoading">Search</a>
         <a class="btn-large waves-effect waves-light" 
-           ng-class="{disabled:!twittyCtrl.selectedMusician}" 
-           ng-click="twittyCtrl.selectedMusician && twittyCtrl.nextPage(7)" 
-           ng-if="!twittyCtrl.isLoading">I'm Feeling Lucky</a>
-        <div class="preloader-wrapper big active" ng-if="twittyCtrl.isLoading">
+           ng-class="{disabled:!tweetyCtrl.selectedMusician}" 
+           ng-click="tweetyCtrl.selectedMusician && tweetyCtrl.nextPage(7)" 
+           ng-if="!tweetyCtrl.isLoading">I'm Feeling Lucky</a>
+        <div class="preloader-wrapper big active" ng-if="tweetyCtrl.isLoading">
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>

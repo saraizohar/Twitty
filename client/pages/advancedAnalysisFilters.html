@@ -1,28 +1,34 @@
 ﻿<div>
     <br><br>
-    <h1 class="header center orange-text">{{twittyCtrl.applicationName}}</h1>
+    <h1 class="header center orange-text">{{tweetyCtrl.applicationName}}</h1>
     <div class="row center">
-        <h2 class="header col s12 light">{{twittyCtrl.musician.user.name}}</h2>
-        <h3 class="header col s12 light">@{{twittyCtrl.musician.user.accountName}}</h3>
+        <h2 class="header col s12 light">{{tweetyCtrl.musician.user.name}}</h2>
+        <h3 class="header col s12 light">@{{tweetyCtrl.musician.user.accountName}}</h3>
         <h4 class="header col s12 light">Choose Advanced Analysis Filters:</h4>
     </div>
     <div class="center">
-        <input type="checkbox" class="filled-in" id="topRatesTweets" ng-model="twittyCtrl.topRatesTweets" />
+        <input type="checkbox" class="filled-in" id="topRatesTweets" ng-model="tweetyCtrl.topRatesTweets" />
         <label for="topRatesTweets">Top rated tweets</label>
         <br><br>
-        <input type="checkbox" class="filled-in" id="topRelatedMusician" ng-model="twittyCtrl.topRelatedMusician" />
+        <input type="checkbox" class="filled-in" id="topRelatedMusician" ng-model="tweetyCtrl.topRelatedMusician" />
         <label for="topRelatedMusician">Top rated Musician</label>
         <br><br>
-        <input type="checkbox" class="filled-in" id="sentimentAnalysis" ng-model="twittyCtrl.sentimentAnalysis" />
+        <input type="checkbox" class="filled-in" id="sentimentAnalysis" ng-model="tweetyCtrl.sentimentAnalysis" />
         <label for="sentimentAnalysis">Sentiment analysis</label>
         <br><br>
-        <input type="checkbox" class="filled-in" id="timeAnalysis" ng-model="twittyCtrl.timeAnalysis" />
+        <input type="checkbox" class="filled-in" id="timeAnalysis" ng-model="tweetyCtrl.timeAnalysis" />
         <label for="timeAnalysis">Time analysis</label>
     </div>
 
     <br><br>
     <div class="row center">
-        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Continue</a>
-        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.nextPage()">Skip</a>
+        <a class="btn-large waves-effect waves-light" ng-click="tweetyCtrl.validateAnalyzeSettings()">Continue</a>
+        <br /><br />
+        <div ng-if="tweetyCtrl.isError">
+            <i class="small material-icons">error_outline</i>
+            <span>{{tweetyCtrl.errorText}}</span>
+        </div>
+        <!--<a class="btn-large waves-effect waves-light" ng-click="tweetyCtrl.nextPage()">Skip</a>-->
+        
     </div>
 </div>

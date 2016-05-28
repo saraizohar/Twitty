@@ -36,7 +36,6 @@
                 });
             },
             calculateResults: function (musicianID, settings) {
-                debugger;
                 return $q(function (resolve, reject) {
                     var queryString = "&id=" + musicianID;
                     angular.forEach(settings, function (value, key) {

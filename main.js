@@ -5,13 +5,21 @@ require.config({
     // paths: maps ids with paths (no extension)
     paths: {
         'angular': 'libs/angular',
-        'jQuery': 'https://code.jquery.com/jquery-2.1.1.min.js',
-        'materialize': 'libs/materialize'
+        'jquery': 'https://code.jquery.com/jquery-2.1.1.min',
+        'materialize': 'libs/materialize',
+        'googleCharts': 'https://www.gstatic.com/charts/loader',
+        'hammer': 'http://hammerjs.github.io/dist/hammer.min'
     },
     // shim: makes external libraries reachable
     shim: {
         angular: {
             exports: 'angular'
+        },
+        jquery: {
+            exports: 'jQuery'
+        },
+        googleCharts: {
+            exports: 'googleCharts'
         }
     }
 });
