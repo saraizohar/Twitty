@@ -9,8 +9,8 @@
 
     <br><br>
     <div class="row center">
-        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.calculateResults()" ng-if="!twittyCtrl.isCalculatingResults">Calculate Results</a>
-        <div class="preloader-wrapper big active" ng-if="twittyCtrl.isCalculatingResults">
+        <a class="btn-large waves-effect waves-light" ng-click="twittyCtrl.calculateResults()" ng-if="!twittyCtrl.isLoading">Calculate Results</a>
+        <div class="preloader-wrapper big active" ng-if="twittyCtrl.isLoading">
             <div class="spinner-layer spinner-blue">
                 <div class="circle-clipper left">
                     <div class="circle"></div>

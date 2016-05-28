@@ -15,10 +15,23 @@
     <div class="row center">
         <a class="btn-large waves-effect waves-light" 
            ng-class="{disabled:!twittyCtrl.selectedMusician}" 
-           ng-click="twittyCtrl.selectedMusician && twittyCtrl.getMusicianBasicInfo()">Search</a>
+           ng-click="twittyCtrl.selectedMusician && twittyCtrl.getMusicianBasicInfo()" 
+           ng-if="!twittyCtrl.isLoading">Search</a>
         <a class="btn-large waves-effect waves-light" 
            ng-class="{disabled:!twittyCtrl.selectedMusician}" 
-           ng-click="twittyCtrl.selectedMusician && twittyCtrl.nextPage(7)">I'm Feeling Lucky</a>
+           ng-click="twittyCtrl.selectedMusician && twittyCtrl.nextPage(7)" 
+           ng-if="!twittyCtrl.isLoading">I'm Feeling Lucky</a>
+        <div class="preloader-wrapper big active" ng-if="twittyCtrl.isLoading">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                    <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <br><br>
 </div>

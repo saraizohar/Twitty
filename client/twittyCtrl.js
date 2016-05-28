@@ -59,6 +59,8 @@ TwittyCtrl.prototype = {
     },
     getMusicianBasicInfo: function () {
         var ctrl = this;
+        ctrl.isLoading = true;
+
         var selectedMusicianID = this.musicianDic[ctrl.selectedMusician];
         this.$http({
             method: 'POST',
@@ -68,9 +70,11 @@ TwittyCtrl.prototype = {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).then(function successCallback(response) {
+            ctrl.isLoading = false;
             ctrl.musician.user = response.data;
             ctrl.nextPage();
         }, function errorCallback(response) {
+            ctrl.isLoading = false;
             debugger;
         });
     },
@@ -91,7 +95,7 @@ TwittyCtrl.prototype = {
         });
     },
     calculateResults: function () {
-        this.isCalculatingResults = true;
+        this.isLoading = true;
 
         var settings = {};
         settings["platform"] = this.platform;
@@ -119,6 +123,7 @@ TwittyCtrl.prototype = {
             }
         }).then(function successCallback(response) {
             debugger;
+            ctrl.isLoading = false;
             ctrl.analyzedData = response.data;
 
             ctrl.platform = response.data.platform;
@@ -127,6 +132,7 @@ TwittyCtrl.prototype = {
             ctrl.changeAnalyzeType("languages");
         }, function errorCallback(response) {
             debugger;
+            ctrl.isLoading = false;
         });
     },
     changeAnalyzeType: function (type) {
@@ -180,7 +186,7 @@ TwittyCtrl.prototype = {
             this.musicianDic[value] = key;
         }, this);
     },
-    _drawChart: function (analyzedData, titleStr) {
+    _drawChart: function (analyzedData, titleStr, chartType) {
         var ctrl = this;
 
         if (this.isFirstTimeDraw) {
@@ -212,6 +218,8 @@ TwittyCtrl.prototype = {
             var options = {
                 title: titleStr,
                 pieHole: 0.4,
+                width: 900,
+                height: 500
             };
 
             var chart = new google.visualization.PieChart(document.getElementById(ctrl.activeTab));

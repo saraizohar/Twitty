@@ -12,6 +12,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="./client/twittyCtrl.js"></script>
+    <link rel="stylesheet" href="./client/css/tweety.css">
 </head>
 <body ng-app="twittyApp">
     <div ng-controller="twittyCtrl as twittyCtrl">

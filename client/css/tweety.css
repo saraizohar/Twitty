@@ -1,0 +1,10 @@
+﻿.nav-bar-box {
+    float:left;
+    padding-left:200px;
+    padding-top: 100px;
+}
+
+.chart {
+    float:right;
+    padding-right: 400px;
+}
