@@ -162,7 +162,7 @@
             })
         },
         _initializeTabsInfoDic: function () {
-
+            debugger;
             this.tabsInfoDic['languages'] = { isActive: false, isAlreadyDrawn: false, type:"pieChart" , title: "Tweets by Language", col1: "languages", col2: "number of tweets"};
             this.tabsInfoDic['contributers'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "bla" };
             this.tabsInfoDic['platform'] = { isActive: false, isAlreadyDrawn: false, type: "pieChart", title: "Tweets by Platform", col1: "platform", col2: "number of tweets" };
